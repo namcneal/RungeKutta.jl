@@ -8,7 +8,7 @@ using RecipesBase
 
 # import SpecialFunctions
 # import ForwardDiff
-import NSDEBase
+using NSDEBase
 
 include("abstract.jl")
 include("utils.jl")
