@@ -6,6 +6,8 @@ using LinearAlgebra
 @reexport using NSDEBase
 using RecipesBase
 
+import NSDEBase
+
 include("abstract.jl")
 include("utils.jl")
 include("solution.jl")
