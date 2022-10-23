@@ -6,8 +6,8 @@ using LinearAlgebra
 @reexport using NSDEBase
 using RecipesBase
 
-import SpecialFunctions
-import ForwardDiff
+# import SpecialFunctions
+# import ForwardDiff
 import NSDEBase
 
 include("abstract.jl")
