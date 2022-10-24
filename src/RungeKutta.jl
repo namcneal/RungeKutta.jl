@@ -1,14 +1,8 @@
 module RungeKutta
 
-using Reexport
 using ArrowMacros
 using LinearAlgebra
-@reexport using NSDEBase
 using RecipesBase
-
-# import SpecialFunctions
-# import ForwardDiff
-using NSDEBase
 
 include("abstract.jl")
 include("utils.jl")
@@ -57,8 +51,10 @@ export AbstractRungeKuttaSolver
 export AbstractRungeKuttaSolution
 export AbstractRungeKuttaParameters
 
-export RungeKuttaSolution
 export ButcherTableau
+export RungeKuttaCache
+export RungeKuttaSolution
+
 
 export ExplicitRungeKuttaSolver, ERK
 export Euler, ExplicitEuler

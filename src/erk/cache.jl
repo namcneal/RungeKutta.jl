@@ -6,6 +6,15 @@ mutable struct ExplicitRungeKuttaCache{n_T<:Integer, m_T<:Integer, v_T<:(Abstrac
     e::e_T # compensated summation error
 end
 
+function ExplicitRungeKuttaCache(u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {ℂ<:Number}
+    @↓ s = solver.tableau
+    n = m = 1
+    v = similar(u0)
+    k = [similar(u0) for i = 1:s]
+    e = Ref(0.0)
+    return ExplicitRungeKuttaCache(n, m, v, k, e)
+end
+
 function ExplicitRungeKuttaCache(problem::AbstractInitialValueProblem, solver::ExplicitRungeKuttaSolver)
     @↓ u0 = problem
     @↓ s = solver.tableau
@@ -18,4 +27,6 @@ end
 
 #---------------------------------- FUNCTIONS ----------------------------------
 
-RungeKuttaCache(problem::AbstractInitialValueProblem, solver::ExplicitRungeKuttaSolver) = ExplicitRungeKuttaCache(problem, solver)
+RungeKuttaCache(problem::AbstractInitialValueProblem, solver::ExplicitRungeKuttaSolver)    = ExplicitRungeKuttaCache(problem, solver)
+
+RungeKuttaCache(u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {ℂ<:Number} = ExplicitRungeKuttaCache(u0,      solver)
