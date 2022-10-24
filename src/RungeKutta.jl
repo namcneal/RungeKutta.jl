@@ -55,9 +55,10 @@ export AbstractRungeKuttaSolution
 export AbstractRungeKuttaParameters
 
 export ButcherTableau
-export RungeKuttaCache
 export RungeKuttaSolution
 
+export RungeKuttaCache
+export ExplicitRungeKuttaCache
 
 export ExplicitRungeKuttaSolver, ERK
 export Euler, ExplicitEuler

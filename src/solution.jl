@@ -27,7 +27,7 @@ struct RungeKuttaSolution{u_T<:(AbstractVector{𝕍} where 𝕍<:AbstractVector{
     t::t_T
 end
 
-function RungeKuttaSolution(problem::AbstractInitialValueProblem, solver::AbstractRungeKuttaSolver)
+function RungeKuttaSolution(u0::AbstractVector{ℂ}, t_T::AbstractVector{ℝ}), solver::AbstractRungeKuttaSolver) where {ℂ<:Number, 𝕍<:AbstractVector{ℂ}, ℝ<:Real}
     @↓ u0, (t0, tN) ← tspan = problem
     @↓ h = solver.stepsize
     N = ceil(Int, (tN - t0) / h) + 1 # e.g. tspan = (0, 1), h = 0.3 ⇒ t = [0.0, 0.3, 0.6, 0.9, 1.2]
@@ -36,6 +36,15 @@ function RungeKuttaSolution(problem::AbstractInitialValueProblem, solver::Abstra
     return RungeKuttaSolution(u, t)
 end
 
+
+function RungeKuttaSolution(problem::AbstractInitialValueProblem, solver::AbstractRungeKuttaSolver)
+    @↓ u0, (t0, tN) ← tspan = problem
+    @↓ h = solver.stepsize
+    N = ceil(Int, (tN - t0) / h) + 1 # e.g. tspan = (0, 1), h = 0.3 ⇒ t = [0.0, 0.3, 0.6, 0.9, 1.2]
+    u = [similar(u0) for i = 1:N]; u[1] = u0
+    t = Vector{typeof(t0)}(undef, N); t[1] = t0
+    return RungeKuttaSolution(u, t)
+end
 #----------------------------------- METHODS -----------------------------------
 
 """
