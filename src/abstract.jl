@@ -1,5 +1,3 @@
-using NSDEBase: AbstractInitialValueSolver, AbstractInitialValueSolution, AbstractInitialValueParameters, AbstractInitialValueCache
-
 abstract type AbstractRungeKuttaSolver <: AbstractInitialValueSolver end
 abstract type AbstractRungeKuttaSolution <: AbstractInitialValueSolution end
 abstract type AbstractRungeKuttaParameters <: AbstractInitialValueParameters end

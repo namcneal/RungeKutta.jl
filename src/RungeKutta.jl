@@ -1,5 +1,8 @@
 module RungeKutta
 
+using Reexport
+@reexport using NSDEBase
+
 using ArrowMacros
 using LinearAlgebra
 using RecipesBase
