@@ -121,6 +121,7 @@ export GaußLegendre6, GaussLegendre6
 
 export butchertableau
 export stepsize
+export step!, adaptivestep!
 export dimension, extract
 export ℛ
 
