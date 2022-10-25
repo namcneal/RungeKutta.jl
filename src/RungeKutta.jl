@@ -53,13 +53,13 @@ include("plot.jl")
 export AbstractRungeKuttaSolver
 export AbstractRungeKuttaSolution
 export AbstractRungeKuttaParameters
+export AbstractAdaptivePArameters
 
-export ButcherTableau
-export RungeKuttaSolution
-
+export AdaptiveParameters
 export RungeKuttaCache
 export ExplicitRungeKuttaCache
 
+export ButcherTableau
 export ExplicitRungeKuttaSolver, ERK
 export Euler, ExplicitEuler
 export Heun2
