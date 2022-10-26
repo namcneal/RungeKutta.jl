@@ -13,7 +13,10 @@ StepSize(h::Real)
 """
 mutable struct StepSize{h_T<:Real} <: AbstractStepSize
     h::h_T
+    maximum_h::h_T
 end
+
+StepSize(h::Real) = StepSize(h, Inf)
 
 #---------------------------------- FUNCTIONS ----------------------------------
 
