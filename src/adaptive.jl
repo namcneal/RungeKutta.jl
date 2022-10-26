@@ -13,9 +13,10 @@ AdaptiveParameters(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
 - `rtol :: Real` : relative tolerance.
 - `nits :: Integer` : maximum number of iterations.
 """
-struct AdaptiveParameters <: AbstractAdaptiveParameters
-	desired_tol::Real
-	max_num_iters::Int64
+struct AdaptiveParameters{atol_T<:Real, rtol_T<:Real, nits_T<:Integer} <: AbstractAdaptiveParameters
+    atol::atol_T
+    rtol::rtol_T
+    nits::nits_T
 end
 
-AdaptiveParameters(; desired_tol::Float64) = AdaptiveParameters(desired_tol, 100)
+AdaptiveParameters(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) = AdaptiveParameters(atol, rtol, nits)
