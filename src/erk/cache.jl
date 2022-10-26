@@ -11,7 +11,7 @@ function ExplicitRungeKuttaCache(u0::AbstractVector{ℂ}, solver::ExplicitRungeK
     @↓ s = solver.tableau
     n = m = 1
     v  = similar(u0)
-    v2 = simular(u0)
+    v2 = similar(u0)
     k = [similar(u0) for i = 1:s]
     e = Ref(0.0)
     return ExplicitRungeKuttaCache(n, m, v, v2, k, e)
