@@ -2,6 +2,7 @@
     AdaptiveParameters <: AbstractAdaptiveParameters
 
 A composite type for the parameters of an adaptive [`AbstractRungeKuttaSolver`](@ref).
+For use in the adaptive Runge-Kutta step algorithm, as described in the .pdf of the docs.
 
 # Constructors
 ```julia
@@ -12,6 +13,7 @@ AdaptiveParameters(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
 - `atol :: Real` : absolute tolerance.
 - `rtol :: Real` : relative tolerance.
 - `nits :: Integer` : maximum number of iterations.
+
 """
 struct AdaptiveParameters{atol_T<:Real, rtol_T<:Real, nits_T<:Integer} <: AbstractAdaptiveParameters
     atol::atol_T
