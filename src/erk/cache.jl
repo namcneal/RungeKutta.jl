@@ -14,7 +14,7 @@ function ExplicitRungeKuttaCache(u0::AbstractVector{ℂ}, solver::ExplicitRungeK
     v2 = simular(u0)
     k = [similar(u0) for i = 1:s]
     e = Ref(0.0)
-    return ExplicitRungeKuttaCache(n, m, v, k, e)
+    return ExplicitRungeKuttaCache(n, m, v, v2, k, e)
 end
 
 function ExplicitRungeKuttaCache(problem::AbstractInitialValueProblem, solver::ExplicitRungeKuttaSolver)
@@ -25,7 +25,7 @@ function ExplicitRungeKuttaCache(problem::AbstractInitialValueProblem, solver::E
     v2 = similar(u0)
     k = [similar(u0) for i = 1:s]
     e = Ref(0.0)
-    return ExplicitRungeKuttaCache(n, m, v, k, e)
+    return ExplicitRungeKuttaCache(n, m, v, v2, k, e)
 end
 
 #---------------------------------- FUNCTIONS ----------------------------------
