@@ -1,4 +1,4 @@
-mutable struct ExplicitRungeKuttaCache{stepsize_T<:Real, n_T<:Integer, m_T<:Integer, v_T<:(AbstractVector{ℂ} where ℂ<:Number), k_T<:(AbstractVector{𝕍} where 𝕍<:AbstractVector{ℂ} where ℂ<:Number), e_T<:(Ref{ℝ} where ℝ<:Real)} <: AbstractRungeKuttaCache
+mutable struct ExplicitRungeKuttaCache{stepsize_T<:AbstractStepSize, n_T<:Integer, m_T<:Integer, v_T<:(AbstractVector{ℂ} where ℂ<:Number), k_T<:(AbstractVector{𝕍} where 𝕍<:AbstractVector{ℂ} where ℂ<:Number), e_T<:(Ref{ℝ} where ℝ<:Real)} <: AbstractRungeKuttaCache
     stepsize::stepsize_T # current stepsize
     n::n_T # step counter
     m::m_T # adaptive counter
@@ -8,7 +8,7 @@ mutable struct ExplicitRungeKuttaCache{stepsize_T<:Real, n_T<:Integer, m_T<:Inte
     e::e_T # compensated summation error
 end
 
-function ExplicitRungeKuttaCache(initial_stepsize::T, u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {T<:Real, ℂ<:Number}
+function ExplicitRungeKuttaCache(initial_stepsize::stepsize_T, u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {stepsize_T<:AbstractStepSize, ℂ<:Number}
     @↓ s = solver.tableau
     n = m = 1
     v  = similar(u0)
@@ -19,4 +19,4 @@ function ExplicitRungeKuttaCache(initial_stepsize::T, u0::AbstractVector{ℂ}, s
 end
 
 #---------------------------------- FUNCTIONS ----------------------------------
-RungeKuttaCache(h::T, u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {T<:Real, ℂ<:Number} = ExplicitRungeKuttaCache(h, u0, solver)
+RungeKuttaCache(h::T, u0::AbstractVector{ℂ}, solver::ExplicitRungeKuttaSolver) where {T<:Real, ℂ<:Number} = ExplicitRungeKuttaCache(StepSize(h), u0, solver)
