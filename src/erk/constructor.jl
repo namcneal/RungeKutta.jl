@@ -23,12 +23,11 @@ returns the `solution` of a `problem` using `solver`.
 """
 struct ExplicitRungeKuttaSolver{tableau_T<:AbstractButcherTableau, stepsize_T<:AbstractStepSize, adaptive_T<:Union{AbstractAdaptiveParameters, Nothing}} <: AbstractRungeKuttaSolver
     tableau::tableau_T
-    stepsize::stepsize_T
     adaptive::adaptive_T
 end
 
-ExplicitRungeKuttaSolver(tableau::AbstractButcherTableau, h::Real, adaptive::Union{AbstractAdaptiveParameters, Nothing}) = ExplicitRungeKuttaSolver(tableau, StepSize(h), adaptive)
-ExplicitRungeKuttaSolver(tableau::AbstractButcherTableau, stepsize::Union{AbstractStepSize, Real}) = ExplicitRungeKuttaSolver(tableau, stepsize, nothing)
+ExplicitRungeKuttaSolver(tableau::AbstractButcherTableau,  adaptive::Union{AbstractAdaptiveParameters, Nothing}) = ExplicitRungeKuttaSolver(tableau, adaptive)
+ExplicitRungeKuttaSolver(tableau::AbstractButcherTableau) = ExplicitRungeKuttaSolver(tableau, nothing)
 @doc (@doc ExplicitRungeKuttaSolver) ERK(args...; kwargs...) = ExplicitRungeKuttaSolver(args...; kwargs...)
 
 #----------------------------------- METHODS -----------------------------------
