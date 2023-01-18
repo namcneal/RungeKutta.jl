@@ -1,73 +1,73 @@
 """
-    Euler(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Euler() :: ExplicitRungeKuttaSolver
     ExplicitEuler(args...; kwargs...) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 1st-order Euler method.
 ```
 """
-function Euler(; h::Real=0.0)
+function Euler()
     p = 1
     tableau = ButcherTableau(float([
         0 0;
         p 1;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 @doc (@doc Euler) ExplicitEuler(args...; kwargs...) = Euler(args...; kwargs...)
 
 """
-    Heun2(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Heun2() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 2nd-order Heun method.
 """
-function Heun2(; h::Real=0.0)
+function Heun2()
     p = 2
     tableau = ButcherTableau(float([
         0   0   0;
         1   1   0;
         p 1/2 1/2;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Midpoint(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Midpoint() :: ExplicitRungeKuttaSolver
     ExplicitMidpoint(args...; kwargs...) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 2nd-order mid-point method.
 """
-function Midpoint(; h::Real=0.0)
+function Midpoint()
     p = 2
     tableau = ButcherTableau(float([
           0   0 0;
         1/2 1/2 0;
           p   0 1;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 @doc (@doc Midpoint) ExplicitMidpoint(args...; kwargs...) = Midpoint(args...; kwargs...)
 
 """
-    Ralston2(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Ralston2() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 2nd-order Ralston method.
 """
-function Ralston2(; h::Real=0.0)
+function Ralston2()
     p = 2
     tableau = ButcherTableau(float([
           0   0   0;
         2/3 2/3   0;
           p 1/4 3/4;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Heun3(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Heun3() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 3rd-order Heun method.
 """
-function Heun3(; h::Real=0.0)
+function Heun3()
     p = 3
     tableau = ButcherTableau(float([
           0   0   0   0;
@@ -75,15 +75,15 @@ function Heun3(; h::Real=0.0)
         2/3   0 2/3   0;
           p 1/4   0 3/4;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Kutta3(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Kutta3() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 3rd-order Kutta method.
 """
-function Kutta3(; h::Real=0.0)
+function Kutta3()
     p = 3
     tableau = ButcherTableau(float([
           0   0   0   0;
@@ -91,15 +91,15 @@ function Kutta3(; h::Real=0.0)
           1  -1   2   0;
           p 1/6 2/3 1/6;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Ralston3(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Ralston3() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 3rd-order Ralston method.
 """
-function Ralston3(; h::Real=0.0)
+function Ralston3()
     p = 3
     tableau = ButcherTableau(float([
           0   0   0   0;
@@ -107,15 +107,15 @@ function Ralston3(; h::Real=0.0)
         3/4   0 3/4   0;
           p 2/9 1/3 4/9;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    SSPRK3(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    SSPRK3() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 3rd-order Strong-Stability-Preserving Runge-Kutta method.
 """
-function SSPRK3(; h::Real=0.0)
+function SSPRK3()
     p = 3
     tableau = ButcherTableau(float([
           0   0   0   0;
@@ -123,15 +123,15 @@ function SSPRK3(; h::Real=0.0)
         1/2 1/4 1/4   0;
           p 1/6 1/6 2/3;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Ralston4(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Ralston4() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 4th-order Ralston method.
 """
-function Ralston4(; h::Real=0.0)
+function Ralston4()
     p = 4
     tableau = ButcherTableau(float([
                  0          0           0          0          0;
@@ -140,16 +140,16 @@ function Ralston4(; h::Real=0.0)
                  1 0.21810040 -3.05096516 3.83286476          0;
                  p 0.17476028 -0.55148066 1.20553560 0.17118478;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    RungeKutta4(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    RungeKutta4() :: ExplicitRungeKuttaSolver
     RK4(args...; kwargs...)
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 4th-order Runge-Kutta method.
 """
-function RungeKutta4(; h::Real=0.0)
+function RungeKutta4()
     p = 4
     tableau = ButcherTableau(float([
           0   0   0   0   0;
@@ -158,16 +158,16 @@ function RungeKutta4(; h::Real=0.0)
           1   0   0   1   0;
           p 1/6 1/3 1/3 1/6;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 @doc (@doc RungeKutta4) RK4(args...; kwargs...) = RungeKutta4(args...; kwargs...)
 
 """
-    Rule38(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Rule38() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 4th-order 3/8-rule method.
 """
-function Rule38(; h::Real=0.0)
+function Rule38()
     p = 4
     tableau = ButcherTableau(float([
           0    0   0   0   0;
@@ -176,15 +176,15 @@ function Rule38(; h::Real=0.0)
           1    1  -1   1   0;
           p  1/8 3/8 3/8 1/8;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Butcher5(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Butcher5() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 5th-order Butcher method.
 """
-function Butcher5(; h::Real=0.0)
+function Butcher5()
     p = 5
     tableau = ButcherTableau(float([
             0    0    0     0     0     0    0;
@@ -195,16 +195,16 @@ function Butcher5(; h::Real=0.0)
             1 -3/7  8/7   6/7 -12/7   8/7    0;
             p 7/90    0 16/45  2/15 16/45 7/90;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    KuttaNyström5(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    KuttaNyström5() :: ExplicitRungeKuttaSolver
     KuttaNystrom5(args...; kwargs...) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 5th-order Kutta-Nyström method.
 """
-function KuttaNyström5(; h::Real=0.0)
+function KuttaNyström5()
     p = 5
     tableau = ButcherTableau(float([
             0      0     0       0    0      0       0;
@@ -215,16 +215,16 @@ function KuttaNyström5(; h::Real=0.0)
           4/5   2/25 12/25    2/15 8/75      0       0;
             p 23/192     0 125/192    0 -27/64 125/192;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 @doc (@doc KuttaNyström5) KuttaNystrom5(args...; kwargs...) = KuttaNyström5(args...; kwargs...)
 
 """
-    Butcher6(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Butcher6() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 6th-order Butcher method.
 """
-function Butcher6(; h::Real=0.0)
+function Butcher6()
     p = 6
     tableau = ButcherTableau(float([
             0        0      0      0       0      0     0      0;
@@ -236,15 +236,15 @@ function Butcher6(; h::Real=0.0)
             1 -261/260  33/13 43/156 -118/39 32/195 80/39      0;
             p   13/200      0  11/40   11/40   4/25  4/25 13/200;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 """
-    Butcher7(; h::Real=0.0) :: ExplicitRungeKuttaSolver
+    Butcher7() :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 7th-order Butcher method.
 """
-function Butcher7(; h::Real=0.0)
+function Butcher7()
     p = 7
     tableau = ButcherTableau(float([
             0         0   0        0            0               0         0           0       0      0;
@@ -258,7 +258,7 @@ function Butcher7(; h::Real=0.0)
             1   -113/32   0  -195/22         32/7      29403/3584  -729/512   1029/1408   21/16      0;
             p         0   0        0       32/105 1771561/6289920  243/2560 16807/74880 77/1440 11/270;
     ]))
-    return ERK(tableau, h)
+    return ERK(tableau)
 end
 
 #####
@@ -266,11 +266,11 @@ end
 #####
 
 """
-    HeunEuler(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    HeunEuler(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 2nd-order Heun-Euler method with 1st-order error estimate.
 """
-function HeunEuler(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function HeunEuler(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 2
     q = 1
     tableau = ButcherTableau(float([
@@ -280,15 +280,15 @@ function HeunEuler(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer
         q    1   0;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
 
 """
-    BogackiShampine(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    BogackiShampine(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 3rd-order Bogacki-Shampine method with 2nd-order error estimate.
 """
-function BogackiShampine(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function BogackiShampine(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 3
     q = 2
     tableau = ButcherTableau(float([
@@ -300,15 +300,15 @@ function BogackiShampine(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::I
           q 7/24 1/4 1/3 1/8;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
 
 """
-    Fehlberg45(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    Fehlberg45(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 4th-order Fehlberg method with 5th-order error estimate.
 """
-function Fehlberg45(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function Fehlberg45(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 4
     q = 5
     tableau = ButcherTableau(float([
@@ -322,15 +322,15 @@ function Fehlberg45(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Intege
             q    16/135          0 6656/12825 28561/56430  -9/50 2/55;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
 
 """
-    DormandPrince54(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    DormandPrince54(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 5th-order Dormand-Prince method with 4th-order error estimate.
 """
-function DormandPrince54(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function DormandPrince54(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 5
     q = 4
     tableau = ButcherTableau(float([
@@ -345,15 +345,15 @@ function DormandPrince54(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::I
            q 5179/57600           0 7571/16695  393/640 -92097/339200 187/2100 1/40;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
 
 """
-    Verner65(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    Verner65(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 6th-order Verner method with 5th-order error estimate.
 """
-function Verner65(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function Verner65(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 6
     q = 5
     tableau = ButcherTableau(float([
@@ -369,15 +369,15 @@ function Verner65(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=
            q      13/160       0    2375/5984      5/16       12/85 3/44          0      0;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
 
 """
-    Fehlberg78(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
+    Fehlberg78(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100) :: ExplicitRungeKuttaSolver
 
 returns an [`ExplicitRungeKuttaSolver`](@ref) for the 7th-order Fehlberg method with 8th-order error estimate.
 """
-function Fehlberg78(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
+function Fehlberg78(; atol::Real=0.0, rtol::Real=1e-5, nits::Integer=100)
     p = 7
     q = 8
     tableau = ButcherTableau(float([
@@ -398,5 +398,5 @@ function Fehlberg78(; h::Real=0.0, atol::Real=0.0, rtol::Real=1e-5, nits::Intege
            q          0    0      0        0         0  34/105      9/35  9/35  9/280 9/280      0 41/840 41/840;
     ]))
     adaptive = AdaptiveParameters(atol=atol, rtol=rtol, nits=nits)
-    return ERK(tableau, h, adaptive)
+    return ERK(tableau, adaptive)
 end
